@@ -101,32 +101,6 @@ int recibirNumero()
 
 
 
-// Imprime la estación del año en el display lcd
-void estacionDelAnio(String estacion)
-{	
-  //lcd.setCursor(9,1);
-  if (estacion == "invierno")
-  {
-    lcd.print("Invierno");
-  }
-  else if (estacion == "otonio")
-  {
-    lcd.print("Otono    ");
-  }
-  else if (estacion == "primavera")
-  {
-    lcd.print("Primavera");
-  } 
-  else if (estacion == "verano")
-  {
-    lcd.print("Verano   ");
-  }
-}
-//FIN Funciones
-
-
-
-
 //INICIO LOOP PRINCIPAL
 void loop()
 {
@@ -146,7 +120,7 @@ void loop()
         lcd.clear(); // Limpio la pantalla del led
       	digitalWrite(LED_NARANJA, 0);
       	digitalWrite(LED_AZUL, 0);
-      	lcd.print(" ");
+      	//lcd.print(" ");
       	flagEncendido = false;
     }
     else if (numero_presionado == 1) // Prendo
@@ -173,7 +147,7 @@ void loop()
    	{
  		estacionElegida = "verano";
     }
-    estacionDelAnio(estacionElegida);
+    
     
     
     IrReceiver.resume(); // Esto le permite "reiniciar" su estado al sensor infrarrojo y dejarlo listo para "escuchar" otra señal.
@@ -188,7 +162,7 @@ void loop()
   {
     lcd.setCursor(0,0);
     lcd.print(estacionElegida);
-    lcd.setCursor(11,0);
+    lcd.setCursor(13,0);
     lcd.print(temp_celcius);
     delay(300);
   
@@ -199,10 +173,10 @@ void loop()
         digitalWrite(LED_NARANJA, 1);
         digitalWrite(LED_AZUL, 0);
       	lcd.clear();
-        lcd.setCursor(11,0);
+        lcd.setCursor(13,0);
    		lcd.print(temp_celcius);
         lcd.setCursor(0,1);
-        lcd.print("INCENDIO ");
+        lcd.print("INCENDIO");
       	
     }
     else
@@ -212,6 +186,8 @@ void loop()
     	flag_incendio == false;
     	digitalWrite(LED_NARANJA, 0);
         digitalWrite(LED_AZUL, 1);
+      	lcd.setCursor(0,1);
+      	lcd.print("Estaciones: 2/5");
     }
   }
 }
